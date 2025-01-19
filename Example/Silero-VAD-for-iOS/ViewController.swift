@@ -43,9 +43,16 @@ class ViewController: UIViewController {
         guard let buffer = loadAudioFile(url: Bundle.main.url(forResource: "output29", withExtension: "wav")) else {
             return
         }
+        
+        // Start timing
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         guard let result = vad.detect(buffer: buffer) else {
             return
         }
+        
+        // Calculate elapsed time
+        let elapsedTime = CFAbsoluteTimeGetCurrent() - startTime
         
         // Convert results to chart data points
         var dataPoints: [VADDataPoint] = []
@@ -72,6 +79,15 @@ class ViewController: UIViewController {
         // Set data and animate
         chartView.data = data
         chartView.animate(xAxisDuration: 1.0)
+        
+        // Show processing time alert
+        let alert = UIAlertController(
+            title: "Processing Complete",
+            message: String(format: "VAD processing took %.2f seconds", elapsedTime),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
     @objc
