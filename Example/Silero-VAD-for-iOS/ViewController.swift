@@ -147,9 +147,11 @@ class ViewController: UIViewController {
             playbackCursor.chartView = chartView
             playbackCursor.duration = audioPlayer?.duration ?? 0
             
-            // play through the speaker
+            // Configure audio session
             let audioSession = AVAudioSession.sharedInstance()
             do {
+                try audioSession.setCategory(.playback, options: [])
+                try audioSession.setActive(true)
                 try audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
             } catch let error as NSError {
                 print("audioSession error: \(error.localizedDescription)")
