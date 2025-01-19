@@ -1,11 +1,11 @@
 PODS:
-  - onnxruntime-c (1.14.0)
-  - onnxruntime-objc (1.14.0):
-    - onnxruntime-objc/Core (= 1.14.0)
-  - onnxruntime-objc/Core (1.14.0):
-    - onnxruntime-c (= 1.14.0)
+  - onnxruntime-c (1.20.0)
+  - onnxruntime-objc (1.20.0):
+    - onnxruntime-objc/Core (= 1.20.0)
+  - onnxruntime-objc/Core (1.20.0):
+    - onnxruntime-c (= 1.20.0)
   - Silero-VAD-for-iOS (0.1.0):
-    - onnxruntime-objc
+    - onnxruntime-objc (~> 1.20.0)
 
 DEPENDENCIES:
   - Silero-VAD-for-iOS (from `../`)
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  onnxruntime-c: 1f5923e555122d12239a1173229d6c5e8a0afd3e
-  onnxruntime-objc: d4542b141e06b3ecb98b36f226ef47db0d9add36
-  Silero-VAD-for-iOS: fb19a6a5e39b127958b54499dbdf9a524e2c75b8
+  onnxruntime-c: 07cfff40dda7e1c54a4350bb2ad226c63150fce3
+  onnxruntime-objc: b22c5d4517e9804e47c66f1f122ec4a6aa923f86
+  Silero-VAD-for-iOS: 83218db531a9370b638ecfdb49f3042338a151ff
 
 PODFILE CHECKSUM: 4a193feb7546dc9afe1fbd3277ff1e3a4f3fe5cd
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.16.2

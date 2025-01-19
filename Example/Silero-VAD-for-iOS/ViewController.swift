@@ -14,10 +14,10 @@ class ViewController: UIViewController {
     let vad = VoiceActivityDetector()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let floatValue: Float = -0.004486084
-//        let intValue = floatValue.bitPattern
-//        let hexString = String(format: "0x%08x", intValue)
-//        print(hexString) // 输出: 0x40490fdb
+       let floatValue: Float = -0.004486084
+       let intValue = floatValue.bitPattern
+       let hexString = String(format: "0x%08x", intValue)
+       print(hexString) // 输出: 0x40490fdb
         
         // Do any additional setup after loading the view, typically from a nib.
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(testDetect)))

@@ -41,5 +41,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'onnxruntime-objc'
+  s.dependency 'onnxruntime-objc', '~> 1.20.0'
 end
