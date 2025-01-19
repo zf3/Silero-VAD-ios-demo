@@ -19,26 +19,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="20" y="100" width="335" height="400"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-cz-BVc">
-                                <rect key="frame" x="20" y="620" width="150" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Wav file VAD"/>
-                                <connections>
-                                    <action selector="onWavFileVADClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="abc-12-xyz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="770-MB-ODA">
-                                <rect key="frame" x="200" y="620" width="150" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="MIC VAD"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="horizontal" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="button-stack">
+                                <rect key="frame" x="20" y="620" width="335" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-cz-BVc">
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Wav file VAD"/>
+                                        <connections>
+                                            <action selector="onWavFileVADClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="abc-12-xyz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="770-MB-ODA">
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="MIC VAD"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="chart-view" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="chart-top"/>
+                            <constraint firstItem="chart-view" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="chart-leading"/>
+                            <constraint firstItem="kh9-bI-dsS" firstAttribute="trailing" secondItem="chart-view" secondAttribute="trailing" constant="20" id="chart-trailing"/>
+                            
+                            <constraint firstItem="button-stack" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" constant="-20" id="button-bottom"/>
+                            <constraint firstItem="button-stack" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="button-leading"/>
+                            <constraint firstItem="kh9-bI-dsS" firstAttribute="trailing" secondItem="button-stack" secondAttribute="trailing" constant="20" id="button-trailing"/>
+                            
+                            <constraint firstItem="button-stack" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="chart-button-spacing"/>
+                        </constraints>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
