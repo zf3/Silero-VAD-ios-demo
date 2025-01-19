@@ -31,6 +31,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Wav file VAD"/>
+                                <connections>
+                                    <action selector="onWavFileVADClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="abc-12-xyz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="770-MB-ODA">
                                 <rect key="frame" x="202" y="612" width="92" height="35"/>
