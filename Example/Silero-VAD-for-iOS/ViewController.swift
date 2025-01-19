@@ -53,6 +53,13 @@ class ViewController: UIViewController {
         chartView.rightAxis.enabled = false
         chartView.legend.textColor = .label
         chartView.backgroundColor = .systemBackground
+        
+        // Configure highlight appearance
+        chartView.highlightPerTapEnabled = false
+        chartView.highlightPerDragEnabled = false
+        chartView.highlightLineWidth = 2.0
+        chartView.highlightLineDashLengths = nil // Solid line
+        chartView.highlightColor = .systemRed
     }
     
     @IBAction func onWavFileVADClicked(_ sender: Any) {
@@ -167,7 +174,9 @@ class ViewController: UIViewController {
         
         // Highlight current position on chart
         let highlight = Highlight(x: currentTime, y: 0, dataSetIndex: 0)
-        chartView.highlightValue(highlight)
+        highlight.drawX = true // Draw vertical line
+        highlight.drawY = false // Don't draw horizontal line
+        chartView.highlightValue(highlight, callDelegate: false)
     }
     
     func stopPlayback() {
