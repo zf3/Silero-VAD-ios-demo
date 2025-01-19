@@ -9,9 +9,16 @@
 import UIKit
 import Silero_VAD_for_iOS
 import AVFAudio
+import Charts
 
 class ViewController: UIViewController {
     let vad = VoiceActivityDetector()
+    @IBOutlet weak var chartView: LineChartView!
+    
+    struct VADDataPoint {
+        let time: Double
+        let score: Float
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
        let floatValue: Float = -0.004486084
@@ -31,11 +38,37 @@ class ViewController: UIViewController {
         guard let result = vad.detect(buffer: buffer) else {
             return
         }
-        result.forEach{r in
-            let score = r.score
-            let start = Float(r.start) / 16000
-            // plot the point to the chart
+        
+        // Convert results to chart data points
+        var dataPoints: [VADDataPoint] = []
+        result.forEach { r in
+            let time = Double(r.start) / 16000.0
+            dataPoints.append(VADDataPoint(time: time, score: r.score))
         }
+        
+        // Create chart entries
+        let entries = dataPoints.map { point in
+            ChartDataEntry(x: point.time, y: Double(point.score))
+        }
+        
+        // Configure chart
+        let dataSet = LineChartDataSet(entries: entries, label: "VAD Score")
+        dataSet.colors = [NSUIColor.systemBlue]
+        dataSet.circleColors = [NSUIColor.systemBlue]
+        dataSet.circleRadius = 3.0
+        dataSet.drawValuesEnabled = false
+        
+        let data = LineChartData(dataSet: dataSet)
+        chartView.data = data
+        
+        // Configure chart appearance
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.labelTextColor = .label
+        chartView.leftAxis.labelTextColor = .label
+        chartView.rightAxis.enabled = false
+        chartView.legend.textColor = .label
+        chartView.backgroundColor = .systemBackground
+        chartView.animate(xAxisDuration: 1.0)
     }
     
     @objc

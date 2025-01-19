@@ -4,11 +4,9 @@ platform :ios, '13.0'
 
 target 'Silero-VAD-for-iOS_Example' do
   pod 'Silero-VAD-for-iOS', :path => '../'
+  pod 'Charts', '~> 4.1.0'
   
-
   target 'Silero-VAD-for-iOS_Tests' do
     inherit! :search_paths
-
-    
   end
 end
