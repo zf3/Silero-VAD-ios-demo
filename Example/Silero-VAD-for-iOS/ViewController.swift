@@ -21,10 +21,24 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       let floatValue: Float = -0.004486084
-       let intValue = floatValue.bitPattern
-       let hexString = String(format: "0x%08x", intValue)
-       print(hexString) // 输出: 0x40490fdb
+        let floatValue: Float = -0.004486084
+        let intValue = floatValue.bitPattern
+        let hexString = String(format: "0x%08x", intValue)
+        print(hexString) // 输出: 0x40490fdb
+        
+        // Initialize chart view if not connected via IB
+        if chartView == nil {
+            chartView = LineChartView(frame: CGRect(x: 20, y: 100, width: view.bounds.width - 40, height: 400))
+            view.addSubview(chartView!)
+        }
+        
+        // Configure chart appearance
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.labelTextColor = .label
+        chartView.leftAxis.labelTextColor = .label
+        chartView.rightAxis.enabled = false
+        chartView.legend.textColor = .label
+        chartView.backgroundColor = .systemBackground
     }
     
     @IBAction func onWavFileVADClicked(_ sender: Any) {
@@ -61,13 +75,8 @@ class ViewController: UIViewController {
         let data = LineChartData(dataSet: dataSet)
         chartView.data = data
         
-        // Configure chart appearance
-        chartView.xAxis.labelPosition = .bottom
-        chartView.xAxis.labelTextColor = .label
-        chartView.leftAxis.labelTextColor = .label
-        chartView.rightAxis.enabled = false
-        chartView.legend.textColor = .label
-        chartView.backgroundColor = .systemBackground
+        // Set data and animate
+        chartView.data = data
         chartView.animate(xAxisDuration: 1.0)
     }
     
