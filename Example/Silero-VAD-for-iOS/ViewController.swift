@@ -21,7 +21,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onWavFileVADClicked(_ sender: Any) {
-        testDetect()
+        detectAndChart()
+    }
+    
+    func detectAndChart() {
+        guard let buffer = loadAudioFile(url: Bundle.main.url(forResource: "output29", withExtension: "wav")) else {
+            return
+        }
+        guard let result = vad.detect(buffer: buffer) else {
+            return
+        }
+        result.forEach{r in
+            let score = r.score
+            let start = Float(r.start) / 16000
+            // plot the point to the chart
+        }
     }
     
     @objc
