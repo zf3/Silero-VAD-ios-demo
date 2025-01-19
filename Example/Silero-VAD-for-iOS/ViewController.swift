@@ -13,7 +13,7 @@ import Charts
 
 class ViewController: UIViewController {
     let vad = VoiceActivityDetector()
-    @IBOutlet weak var chartView: LineChartView!
+    @IBOutlet var chartView: LineChartView!
     
     struct VADDataPoint {
         let time: Double
@@ -25,12 +25,6 @@ class ViewController: UIViewController {
         let intValue = floatValue.bitPattern
         let hexString = String(format: "0x%08x", intValue)
         print(hexString) // 输出: 0x40490fdb
-        
-        // Initialize chart view if not connected via IB
-        if chartView == nil {
-            chartView = LineChartView(frame: CGRect(x: 20, y: 100, width: view.bounds.width - 40, height: 400))
-            view.addSubview(chartView!)
-        }
         
         // Configure chart appearance
         chartView.xAxis.labelPosition = .bottom
