@@ -9,7 +9,7 @@
 import UIKit
 import Silero_VAD_for_iOS
 import AVFAudio
-import Charts
+import DGCharts
 
 class PlaybackCursor {
     var currentTime: Double = 0
@@ -58,8 +58,10 @@ class ViewController: UIViewController {
         // Configure highlight appearance
         chartView.highlightPerTapEnabled = false
         chartView.highlightPerDragEnabled = false
+        chartView.highlightPerDragEnabled = false
         chartView.highlightLineWidth = 2.5
-        chartView.highlightLineDashLengths = nil // Solid line
+        chartView.highlightLineDashPhase = 0
+        chartView.highlightLineDashLengths = nil
         chartView.highlightColor = UIColor.systemRed.withAlphaComponent(0.8)
     }
     
@@ -100,8 +102,10 @@ class ViewController: UIViewController {
         dataSet.circleColors = [NSUIColor.systemBlue]
         dataSet.circleRadius = 3.0
         dataSet.drawValuesEnabled = false
+        dataSet.mode = .linear
         
         let data = LineChartData(dataSet: dataSet)
+        data.setDrawValues(false)
         chartView.data = data
         
         // Set data and animate
