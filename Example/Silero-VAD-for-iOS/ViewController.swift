@@ -20,6 +20,7 @@ class PlaybackCursor {
 
 extension ViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Audio playing finished")
         stopPlayback()
     }
     
@@ -57,9 +58,6 @@ class ViewController: UIViewController {
         // Configure highlight appearance
         chartView.highlightPerTapEnabled = false
         chartView.highlightPerDragEnabled = false
-        chartView.highlightLineWidth = 2.0
-        chartView.highlightLineDashLengths = nil // Solid line
-        chartView.highlightColor = .systemRed
     }
     
     @IBAction func onWavFileVADClicked(_ sender: Any) {
@@ -146,12 +144,22 @@ class ViewController: UIViewController {
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.delegate = self
             playbackCursor.chartView = chartView
             playbackCursor.duration = audioPlayer?.duration ?? 0
             
+            // play through the speaker
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+            } catch let error as NSError {
+                print("audioSession error: \(error.localizedDescription)")
+            }
+
             // Start playback and cursor
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.delegate = self
             audioPlayer?.play()
+            print("Audio playing started")
             startCursorTimer()
         } catch {
             print("Error initializing audio player: \(error)")
@@ -174,8 +182,8 @@ class ViewController: UIViewController {
         
         // Highlight current position on chart
         let highlight = Highlight(x: currentTime, y: 0, dataSetIndex: 0)
-        highlight.drawX = true // Draw vertical line
-        highlight.drawY = false // Don't draw horizontal line
+//        highlight.drawX = true // Draw vertical line
+//        highlight.drawY = false // Don't draw horizontal line
         chartView.highlightValue(highlight, callDelegate: false)
     }
     
