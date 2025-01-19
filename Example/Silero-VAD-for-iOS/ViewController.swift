@@ -150,7 +150,7 @@ class ViewController: UIViewController {
             // Configure audio session
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(.playback, mode: .default, options: [])
+                try audioSession.setCategory(.playback, options: [])
                 try audioSession.setActive(true)
                 try audioSession.overrideOutputAudioPort(.speaker)
             } catch let error as NSError {
