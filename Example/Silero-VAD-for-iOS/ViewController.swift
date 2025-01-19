@@ -11,9 +11,29 @@ import Silero_VAD_for_iOS
 import AVFAudio
 import Charts
 
+class PlaybackCursor {
+    var currentTime: Double = 0
+    var duration: Double = 0
+    weak var chartView: LineChartView?
+    var timer: Timer?
+}
+
+extension ViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        stopPlayback()
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        stopPlayback()
+        print("Audio playback error: \(String(describing: error))")
+    }
+}
+
 class ViewController: UIViewController {
     let vad = VoiceActivityDetector()
     @IBOutlet var chartView: LineChartView!
+    var audioPlayer: AVAudioPlayer?
+    var playbackCursor = PlaybackCursor()
     
     struct VADDataPoint {
         let time: Double
@@ -86,7 +106,10 @@ class ViewController: UIViewController {
             message: String(format: "VAD processing took %.2f seconds", elapsedTime),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "Play", style: .default, handler: { [weak self] _ in
+            self?.playAudio()
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         present(alert, animated: true)
     }
     
@@ -107,6 +130,50 @@ class ViewController: UIViewController {
             print("start: \(startS) end:\(endS)")
         }
         
+    }
+    
+    func playAudio() {
+        guard let url = Bundle.main.url(forResource: "output29", withExtension: "wav") else {
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.delegate = self
+            playbackCursor.chartView = chartView
+            playbackCursor.duration = audioPlayer?.duration ?? 0
+            
+            // Start playback and cursor
+            audioPlayer?.play()
+            startCursorTimer()
+        } catch {
+            print("Error initializing audio player: \(error)")
+        }
+    }
+    
+    func startCursorTimer() {
+        playbackCursor.timer?.invalidate()
+        playbackCursor.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.updateCursorPosition()
+        }
+    }
+    
+    func updateCursorPosition() {
+        guard let player = audioPlayer else { return }
+        
+        let currentTime = player.currentTime
+        playbackCursor.currentTime = currentTime
+        
+        // Highlight current position on chart
+        let highlight = Highlight(x: currentTime, y: 0, dataSetIndex: 0)
+        chartView.highlightValue(highlight)
+    }
+    
+    func stopPlayback() {
+        audioPlayer?.stop()
+        playbackCursor.timer?.invalidate()
+        chartView.highlightValue(nil)
     }
     
     func loadAudioFile(url: URL?) -> AVAudioPCMBuffer? {
