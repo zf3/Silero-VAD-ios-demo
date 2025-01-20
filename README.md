@@ -1,9 +1,13 @@
-# Silero-VAD-for-iOS
+# Silero VAD iOS Demo
 
-[![CI Status](https://img.shields.io/travis/fuhao/Silero-VAD-for-iOS.svg?style=flat)](https://travis-ci.org/fuhao/Silero-VAD-for-iOS)
-[![Version](https://img.shields.io/cocoapods/v/Silero-VAD-for-iOS.svg?style=flat)](https://cocoapods.org/pods/Silero-VAD-for-iOS)
-[![License](https://img.shields.io/cocoapods/l/Silero-VAD-for-iOS.svg?style=flat)](https://cocoapods.org/pods/Silero-VAD-for-iOS)
-[![Platform](https://img.shields.io/cocoapods/p/Silero-VAD-for-iOS.svg?style=flat)](https://cocoapods.org/pods/Silero-VAD-for-iOS)
+This is a better demo for Silero VAD on iOS. The VAD pod itself is not changed. The original demo does not have a UI. 
+I added a proper UI and fixed the build for XCode 16.
+
+- Feng Zhou, 2025.1
+
+------
+
+README from original author:
 
 ## Example
 
