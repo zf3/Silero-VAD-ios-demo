@@ -42,10 +42,6 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let floatValue: Float = -0.004486084
-        let intValue = floatValue.bitPattern
-        let hexString = String(format: "0x%08x", intValue)
-        print(hexString) // 输出: 0x40490fdb
         
         // Configure chart appearance
         chartView.xAxis.labelPosition = .bottom
@@ -61,9 +57,11 @@ class ViewController: UIViewController {
         chartView.highlightPerDragEnabled = false
     }
     
-    @IBAction func onWavFileVADClicked(_ sender: Any) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         detectAndChart()
     }
+    
     
     func detectAndChart() {
         guard let buffer = loadAudioFile(url: Bundle.main.url(forResource: "output29", withExtension: "wav")) else {
