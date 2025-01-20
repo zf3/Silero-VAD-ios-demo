@@ -58,10 +58,10 @@ class ViewController: UIViewController, VADContainer {
         chartView.highlightPerTapEnabled = false
         chartView.highlightPerDragEnabled = false
         chartView.highlightPerDragEnabled = false
-        chartView.highlightLineWidth = 2.0
-        chartView.highlightLineDashPhase = 0
-        chartView.highlightLineDashLengths = nil
-        chartView.highlightColor = UIColor.systemRed.withAlphaComponent(0.8)
+//        chartView.highlightLineWidth = 2.0
+//        chartView.highlightLineDashPhase = 0
+//        chartView.highlightLineDashLengths = nil
+//        chartView.highlightColor = UIColor.systemRed.withAlphaComponent(0.8)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -207,8 +207,8 @@ class ViewController: UIViewController, VADContainer {
         
         // Highlight current position on chart
         let highlight = Highlight(x: currentTime, y: 0, dataSetIndex: 0)
-        highlight.drawX = true // Draw vertical line
-        highlight.drawY = false // Don't draw horizontal line
+//        highlight.drawX = true // Draw vertical line
+//        highlight.drawY = false // Don't draw horizontal line
         chartView.highlightValue(highlight, callDelegate: false)
     }
     
