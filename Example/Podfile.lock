@@ -1,8 +1,7 @@
 PODS:
-  - Charts (4.1.0):
-    - Charts/Core (= 4.1.0)
-  - Charts/Core (4.1.0):
-    - SwiftAlgorithms (~> 1.0)
+  - DGCharts (5.0.0):
+    - DGCharts/Core (= 5.0.0)
+  - DGCharts/Core (5.0.0)
   - onnxruntime-c (1.20.0)
   - onnxruntime-objc (1.20.0):
     - onnxruntime-objc/Core (= 1.20.0)
@@ -10,30 +9,27 @@ PODS:
     - onnxruntime-c (= 1.20.0)
   - Silero-VAD-for-iOS (0.1.0):
     - onnxruntime-objc (~> 1.20.0)
-  - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
-  - Charts (~> 4.1.0)
+  - DGCharts (~> 5.0.0)
   - Silero-VAD-for-iOS (from `../`)
 
 SPEC REPOS:
   trunk:
-    - Charts
+    - DGCharts
     - onnxruntime-c
     - onnxruntime-objc
-    - SwiftAlgorithms
 
 EXTERNAL SOURCES:
   Silero-VAD-for-iOS:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
+  DGCharts: 6e0cf2644e8f81ad13f04caa8bc18502870a1c54
   onnxruntime-c: 07cfff40dda7e1c54a4350bb2ad226c63150fce3
   onnxruntime-objc: b22c5d4517e9804e47c66f1f122ec4a6aa923f86
   Silero-VAD-for-iOS: 83218db531a9370b638ecfdb49f3042338a151ff
-  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 86b11ebce81d84576740783b53f6efd24c9cc1ef
+PODFILE CHECKSUM: fc5064ccf92f69f6399c9a0a2001ae7543af8609
 
 COCOAPODS: 1.16.2

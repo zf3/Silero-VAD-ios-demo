@@ -16,6 +16,8 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		7B600ED429F69882006DAF45 /* en_example.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7B600ED329F69882006DAF45 /* en_example.wav */; };
 		7B600EE929FB791C006DAF45 /* output29.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7B600EE829FB791C006DAF45 /* output29.wav */; };
+		B9BB69C92D3DFC38002001DB /* MicVadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB69C82D3DFC38002001DB /* MicVadViewController.swift */; };
+		B9BB69CA2D3DFC38002001DB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB69C72D3DFC38002001DB /* MainTabBarController.swift */; };
 		CB32C1E83703475976C9C2F2 /* Pods_Silero_VAD_for_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204F28E93C593A01D263337E /* Pods_Silero_VAD_for_iOS_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,8 @@
 		7B600EE829FB791C006DAF45 /* output29.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = output29.wav; sourceTree = "<group>"; };
 		9776CFCC0368954ED808BD08 /* Pods-Silero-VAD-for-iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Silero-VAD-for-iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-Silero-VAD-for-iOS_Tests/Pods-Silero-VAD-for-iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9F66DD08B5D049E55D1A30D1 /* Pods-Silero-VAD-for-iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Silero-VAD-for-iOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-Silero-VAD-for-iOS_Example/Pods-Silero-VAD-for-iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		B9BB69C72D3DFC38002001DB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		B9BB69C82D3DFC38002001DB /* MicVadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicVadViewController.swift; sourceTree = "<group>"; };
 		DFA7F83984E0B7BA54D2D971 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FFFCB006246BCC8DB3358CFB /* Pods_Silero_VAD_for_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Silero_VAD_for_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -97,6 +101,8 @@
 		607FACD21AFB9204008FA782 /* Example for Silero-VAD-for-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B9BB69C72D3DFC38002001DB /* MainTabBarController.swift */,
+				B9BB69C82D3DFC38002001DB /* MicVadViewController.swift */,
 				7B600EE829FB791C006DAF45 /* output29.wav */,
 				7B600ED329F69882006DAF45 /* en_example.wav */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -280,13 +286,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Silero-VAD-for-iOS_Example/Pods-Silero-VAD-for-iOS_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework",
+				"${BUILT_PRODUCTS_DIR}/DGCharts/DGCharts.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Algorithms.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGCharts.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -364,6 +368,8 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				B9BB69C92D3DFC38002001DB /* MicVadViewController.swift in Sources */,
+				B9BB69CA2D3DFC38002001DB /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
