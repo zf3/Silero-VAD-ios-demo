@@ -14,6 +14,7 @@ class MicVadViewController: UIViewController, VADContainer {
     var vad: VoiceActivityDetector?
     var audioEngine: AVAudioEngine?
     var audioFile: AVAudioFile?
+    var sampleBuffer: [Float] = []
     
     @IBOutlet weak var voiceIndicator: UIView!
     @IBOutlet weak var indicatorCircle: UIView!
@@ -93,10 +94,28 @@ class MicVadViewController: UIViewController, VADContainer {
             converterNode.installTap(onBus: 0,
                                    bufferSize: 1024,
                                    format: expectedFormat) { [weak self] (buffer, when) in
-                self?.processAudioBuffer(buffer)
+                guard let self = self else { return }
+                
+                // Get audio samples
+                guard let channelData = buffer.floatChannelData else { return }
+                let samples = Array(UnsafeBufferPointer(start: channelData[0], count: Int(buffer.frameLength)))
+                
+                // Append new samples to buffer
+                self.sampleBuffer.append(contentsOf: samples)
+                
+                // Process in chunks of 512 samples
+                while self.sampleBuffer.count >= 512 {
+                    let chunk = Array(self.sampleBuffer[0..<512])
+                    self.sampleBuffer.removeFirst(512)
+                    
+                    // Create PCM buffer from chunk
+                    if let pcmBuffer = self.createPCMBuffer(from: chunk, format: expectedFormat) {
+                        self.processAudioBuffer(pcmBuffer)
+                    }
+                }
                 
                 // Write buffer to file
-                if let audioFile = self?.audioFile {
+                if let audioFile = self.audioFile {
                     do {
                         try audioFile.write(from: buffer)
                     } catch {
@@ -133,6 +152,21 @@ class MicVadViewController: UIViewController, VADContainer {
                 self?.updateIndicator(score: score)
             }
         }
+    }
+    
+    private func createPCMBuffer(from samples: [Float], format: AVAudioFormat) -> AVAudioPCMBuffer? {
+        guard let pcmBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(samples.count)) else {
+            return nil
+        }
+        
+        pcmBuffer.frameLength = AVAudioFrameCount(samples.count)
+        let channelData = pcmBuffer.floatChannelData?[0]
+        
+        for (index, sample) in samples.enumerated() {
+            channelData?[index] = sample
+        }
+        
+        return pcmBuffer
     }
     
     private func updateIndicator(score: Float) {
