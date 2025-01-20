@@ -515,6 +515,7 @@
 			baseConfigurationReference = 9F66DD08B5D049E55D1A30D1 /* Pods-Silero-VAD-for-iOS_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				DEVELOPMENT_TEAM = P58ZSWF5A7;
 				INFOPLIST_FILE = "Silero-VAD-for-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -532,6 +533,7 @@
 			baseConfigurationReference = 69FA319B28FA8CFFD78FC441 /* Pods-Silero-VAD-for-iOS_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				DEVELOPMENT_TEAM = P58ZSWF5A7;
 				INFOPLIST_FILE = "Silero-VAD-for-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
