@@ -118,7 +118,8 @@ public class VoiceActivityDetector {
     
     
     
-    
+    // Perform VAD on buffer. The buffer is segmented into frames of windowSampleNums each. The last segment is 0-padded
+    // if it is shorter than windowsSampleNums.
     fileprivate func _detectVAD(_ buffer: AVAudioPCMBuffer, _ windowSampleNums: Int, _ modelHandler: ModelHandler ) -> [VADResult]  {
         var scores: [VADResult] = []
         let channelData: UnsafePointer<UnsafeMutablePointer<Float32>> = buffer.floatChannelData!

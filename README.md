@@ -4,7 +4,8 @@ This enhanced demo for Silero VAD on iOS is based on [Silero-VAD-for-iOS](https:
 
 - Feng Zhou, 2025.1
 
-<a href="doc/silero-vad-ios.jpeg"><img src="doc/silero-vad-ios.jpeg" width=200></a>
+<a href="doc/silero-vad-main.png"><img src="doc/silero-vad-main.png" width=200></a>
+<a href="doc/silero-vad-mic.png"><img src="doc/silero-vad-mic.png" width=200></a>
 
 ------
 

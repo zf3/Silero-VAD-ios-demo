@@ -144,7 +144,7 @@ class MicVadViewController: UIViewController, VADContainer {
         guard let vad = vad else { return }
         
         // Perform VAD detection
-        if let result = vad.detect(buffer: buffer) {
+        if let result = vad.detectContinuously(buffer: buffer) {
             let score = result.first?.score ?? 0.0
             
             // Update UI on main thread
