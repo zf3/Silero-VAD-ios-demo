@@ -162,7 +162,10 @@ class ViewController: UIViewController, VADContainer {
         
     }
     
+    @IBAction
     func playAudio() {
+        print("Play audio")
+        
         guard let url = Bundle.main.url(forResource: "output29", withExtension: "wav") else {
             return
         }
