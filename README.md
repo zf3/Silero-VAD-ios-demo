@@ -1,9 +1,10 @@
 # Silero VAD iOS Demo
 
-This is a better demo for Silero VAD on iOS. The VAD pod itself is not changed. The original demo does not have a UI. 
-I added a proper UI and fixed the build for XCode 16.
+This enhanced demo for Silero VAD on iOS is based on [Silero-VAD-for-iOS](https://github.com/tangfuhao/Silero-VAD-for-iOS). While the VAD pod remains unchanged, this version includes a fully functional UI and build fixes for Xcode 16.
 
 - Feng Zhou, 2025.1
+
+<a href="doc/silero-vad-ios.jpeg"><img src="doc/silero-vad-ios.jpeg" width=200></a>
 
 ------
 
