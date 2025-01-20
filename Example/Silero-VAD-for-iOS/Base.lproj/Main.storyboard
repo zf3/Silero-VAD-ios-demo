@@ -41,10 +41,35 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="DGCharts">
                                 <rect key="frame" x="20" y="40" width="335" height="558"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Processing time: 0.00s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="processing-time-label">
+                                <rect key="frame" x="20" y="618" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="play-button">
+                                <rect key="frame" x="230" y="608" width="125" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="play-button-height"/>
+                                    <constraint firstAttribute="width" constant="125" id="play-button-width"/>
+                                </constraints>
+                                <state key="normal" title="Play Audio">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="playAudio" destination="vXZ-lx-hvc" eventType="touchUpInside" id="play-button-action"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="chart-bottom"/>
+                            <constraint firstItem="processing-time-label" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="label-top"/>
+                            <constraint firstItem="processing-time-label" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="label-leading"/>
+                            <constraint firstItem="play-button" firstAttribute="leading" secondItem="processing-time-label" secondAttribute="trailing" constant="10" id="play-button-leading"/>
+                            <constraint firstItem="play-button" firstAttribute="centerY" secondItem="processing-time-label" secondAttribute="centerY" id="play-button-center-y"/>
+                            <constraint firstAttribute="trailing" secondItem="play-button" secondAttribute="trailing" constant="20" id="play-button-trailing"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="processing-time-label" secondAttribute="bottom" constant="20" id="label-bottom"/>
                             <constraint firstItem="chart-view" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="chart-leading"/>
                             <constraint firstItem="chart-view" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="chart-top"/>
                             <constraint firstAttribute="trailing" secondItem="chart-view" secondAttribute="trailing" constant="20" id="chart-trailing"/>

@@ -33,6 +33,9 @@ extension ViewController: AVAudioPlayerDelegate {
 class ViewController: UIViewController, VADContainer {
     var vad: VoiceActivityDetector?
     @IBOutlet var chartView: LineChartView!
+    @IBOutlet weak var processingTimeLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    
     var audioPlayer: AVAudioPlayer?
     var playbackCursor = PlaybackCursor()
     
@@ -42,6 +45,12 @@ class ViewController: UIViewController, VADContainer {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Configure UI
+        processingTimeLabel.isHidden = true
+        playButton.isHidden = true
+        playButton.layer.cornerRadius = 8
+        playButton.clipsToBounds = true
         
         // Configure chart appearance
         chartView.xAxis.labelPosition = .bottom
@@ -125,17 +134,10 @@ class ViewController: UIViewController, VADContainer {
         chartView.data = data
         chartView.animate(xAxisDuration: 1.0)
         
-        // Show processing time alert
-        let alert = UIAlertController(
-            title: "Processing Complete",
-            message: String(format: "VAD processing took %.2f seconds", elapsedTime),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Play", style: .default, handler: { [weak self] _ in
-            self?.playAudio()
-        }))
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-        present(alert, animated: true)
+        // Update processing time label
+        processingTimeLabel.text = String(format: "Processing time: %.2fs", elapsedTime)
+        processingTimeLabel.isHidden = false
+        playButton.isHidden = false
     }
     
     @objc
