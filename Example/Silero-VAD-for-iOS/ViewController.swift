@@ -50,11 +50,18 @@ class ViewController: UIViewController, VADContainer {
         chartView.rightAxis.enabled = false
         chartView.legend.textColor = .label
         chartView.backgroundColor = .systemBackground
+        chartView.noDataText = "No data available"
+        chartView.noDataTextColor = .label
+        chartView.isUserInteractionEnabled = true
         
         // Configure highlight appearance
         chartView.highlightPerTapEnabled = false
         chartView.highlightPerDragEnabled = false
         chartView.highlightPerDragEnabled = false
+        chartView.highlightLineWidth = 2.0
+        chartView.highlightLineDashPhase = 0
+        chartView.highlightLineDashLengths = nil
+        chartView.highlightColor = UIColor.systemRed.withAlphaComponent(0.8)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,6 +111,15 @@ class ViewController: UIViewController, VADContainer {
         let data = LineChartData(dataSet: dataSet)
         data.setDrawValues(false)
         chartView.data = data
+        
+        // Debug logging
+        print("Chart data set with \(entries.count) entries")
+        print("Chart view frame: \(chartView.frame)")
+        print("Chart view bounds: \(chartView.bounds)")
+        
+        // Ensure chart is visible
+        chartView.isHidden = false
+        chartView.setNeedsDisplay()
         
         // Set data and animate
         chartView.data = data
@@ -191,8 +207,8 @@ class ViewController: UIViewController, VADContainer {
         
         // Highlight current position on chart
         let highlight = Highlight(x: currentTime, y: 0, dataSetIndex: 0)
-//        highlight.drawX = true // Draw vertical line
-//        highlight.drawY = false // Don't draw horizontal line
+        highlight.drawX = true // Draw vertical line
+        highlight.drawY = false // Don't draw horizontal line
         chartView.highlightValue(highlight, callDelegate: false)
     }
     
