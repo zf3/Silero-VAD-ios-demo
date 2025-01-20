@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="tab-bar-scene">
             <objects>
                 <tabBarController id="tab-bar-controller" customClass="MainTabBarController" customModule="Silero_VAD_for_iOS_Example" sceneMemberID="viewController">
@@ -38,16 +38,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="DGCharts">
-                                <rect key="frame" x="20" y="40" width="335" height="503.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="DGCharts">
+                                <rect key="frame" x="20" y="40" width="335" height="558"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="chart-bottom"/>
                             <constraint firstItem="chart-view" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="chart-leading"/>
                             <constraint firstItem="chart-view" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="chart-top"/>
                             <constraint firstAttribute="trailing" secondItem="chart-view" secondAttribute="trailing" constant="20" id="chart-trailing"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="chart-bottom"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Wav file" image="waveform" catalog="system" id="nrt-ri-b2G"/>
@@ -98,6 +98,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Mic" image="microphone.fill" catalog="system" id="9Lq-OQ-BVr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="indicatorCircle" destination="indicator-circle" id="D6v-6H-Xct"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mic-first-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
