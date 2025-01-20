@@ -79,8 +79,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="circle-height"/>
-                                            <constraint firstAttribute="width" constant="50" id="circle-width"/>
+                                            <constraint firstAttribute="height" constant="100" id="circle-height"/>
+                                            <constraint firstAttribute="width" constant="100" id="circle-width"/>
                                         </constraints>
                                     </view>
                                 </subviews>
