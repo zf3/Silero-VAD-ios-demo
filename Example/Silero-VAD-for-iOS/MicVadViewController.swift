@@ -13,6 +13,7 @@ import AVFoundation
 class MicVadViewController: UIViewController, VADContainer {
     var vad: VoiceActivityDetector?
     var audioEngine: AVAudioEngine?
+    var audioFile: AVAudioFile?
     
     @IBOutlet weak var voiceIndicator: UIView!
     @IBOutlet weak var indicatorCircle: UIView!
@@ -55,6 +56,15 @@ class MicVadViewController: UIViewController, VADContainer {
             try audioSession.setCategory(.playAndRecord, mode: .default)
             try audioSession.setActive(true)
             
+            // Setup audio file for recording
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let audioFileURL = documentsURL.appendingPathComponent("mic_recording.wav")
+            
+            // Remove existing file if present
+            if FileManager.default.fileExists(atPath: audioFileURL.path) {
+                try FileManager.default.removeItem(at: audioFileURL)
+            }
+            
             audioEngine = AVAudioEngine()
             guard let audioEngine = audioEngine else { return }
             
@@ -67,6 +77,12 @@ class MicVadViewController: UIViewController, VADContainer {
                                              channels: 1,
                                              interleaved: false)!
             
+            // Create audio file for recording
+            audioFile = try AVAudioFile(forWriting: audioFileURL,
+                                      settings: expectedFormat.settings,
+                                      commonFormat: .pcmFormatFloat32,
+                                      interleaved: false)
+            
             let converterNode = AVAudioMixerNode()
             audioEngine.attach(converterNode)
             
@@ -78,6 +94,15 @@ class MicVadViewController: UIViewController, VADContainer {
                                    bufferSize: 1024,
                                    format: expectedFormat) { [weak self] (buffer, when) in
                 self?.processAudioBuffer(buffer)
+                
+                // Write buffer to file
+                if let audioFile = self?.audioFile {
+                    do {
+                        try audioFile.write(from: buffer)
+                    } catch {
+                        print("Error writing to audio file: \(error)")
+                    }
+                }
             }
             
             try audioEngine.start()
@@ -90,6 +115,10 @@ class MicVadViewController: UIViewController, VADContainer {
         audioEngine?.stop()
         audioEngine?.inputNode.removeTap(onBus: 0)
         audioEngine = nil
+        
+        // Close audio file
+        audioFile = nil
+        print("Audio recording saved to Documents directory")
     }
     
     private func processAudioBuffer(_ buffer: AVAudioPCMBuffer) {
