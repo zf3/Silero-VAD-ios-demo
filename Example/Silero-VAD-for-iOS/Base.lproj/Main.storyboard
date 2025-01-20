@@ -19,13 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="100" width="335" height="400"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="DGCharts">
+                                <rect key="frame" x="20" y="40" width="335" height="552.5"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="horizontal" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="button-stack">
-                                <rect key="frame" x="20" y="620" width="335" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="button-stack">
+                                <rect key="frame" x="20" y="612.5" width="335" height="34.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-cz-BVc">
+                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Wav file VAD"/>
                                         <connections>
@@ -33,24 +34,23 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="770-MB-ODA">
+                                        <rect key="frame" x="175.5" y="0.0" width="159.5" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="MIC VAD"/>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="chart-view" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="chart-top"/>
-                            <constraint firstItem="chart-view" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="chart-leading"/>
-                            <constraint firstItem="kh9-bI-dsS" firstAttribute="trailing" secondItem="chart-view" secondAttribute="trailing" constant="20" id="chart-trailing"/>
-                            
                             <constraint firstItem="button-stack" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" constant="-20" id="button-bottom"/>
                             <constraint firstItem="button-stack" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="button-leading"/>
-                            <constraint firstItem="kh9-bI-dsS" firstAttribute="trailing" secondItem="button-stack" secondAttribute="trailing" constant="20" id="button-trailing"/>
-                            
+                            <constraint firstAttribute="trailing" secondItem="button-stack" secondAttribute="trailing" constant="20" id="button-trailing"/>
                             <constraint firstItem="button-stack" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="chart-button-spacing"/>
+                            <constraint firstItem="chart-view" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="chart-leading"/>
+                            <constraint firstItem="chart-view" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="chart-top"/>
+                            <constraint firstAttribute="trailing" secondItem="chart-view" secondAttribute="trailing" constant="20" id="chart-trailing"/>
                         </constraints>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="chart-view" id="Wgf-gI-Hcm"/>
