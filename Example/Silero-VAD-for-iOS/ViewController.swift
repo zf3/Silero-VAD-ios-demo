@@ -74,6 +74,8 @@ class ViewController: UIViewController {
         guard let result = vad.detect(buffer: buffer) else {
             return
         }
+
+        print("Number of entries in result: \(result.count)")
         
         // Calculate elapsed time
         let elapsedTime = CFAbsoluteTimeGetCurrent() - startTime
