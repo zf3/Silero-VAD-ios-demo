@@ -1,3 +1,11 @@
+//
+//  MainTabBarController.swift
+//  Silero-VAD-for-iOS
+//
+//  Created by Feng Zhou on 01/20/2025.
+//  Copyright (c) 2025 Feng Zhou. All rights reserved.
+//
+
 import UIKit
 import Silero_VAD_for_iOS
 
