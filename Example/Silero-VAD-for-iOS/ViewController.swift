@@ -30,8 +30,8 @@ extension ViewController: AVAudioPlayerDelegate {
     }
 }
 
-class ViewController: UIViewController {
-    let vad = VoiceActivityDetector()
+class ViewController: UIViewController, VADContainer {
+    var vad: VoiceActivityDetector?
     @IBOutlet var chartView: LineChartView!
     var audioPlayer: AVAudioPlayer?
     var playbackCursor = PlaybackCursor()
@@ -71,7 +71,8 @@ class ViewController: UIViewController {
         // Start timing
         let startTime = CFAbsoluteTimeGetCurrent()
         
-        guard let result = vad.detect(buffer: buffer) else {
+        guard let vad = vad,
+              let result = vad.detect(buffer: buffer) else {
             return
         }
 

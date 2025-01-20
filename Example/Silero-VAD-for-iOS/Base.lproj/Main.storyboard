@@ -10,7 +10,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="tab-bar-scene">
             <objects>
-                <tabBarController id="tab-bar-controller" sceneMemberID="viewController">
+                <tabBarController id="tab-bar-controller" customClass="MainTabBarController" customModule="Silero_VAD_for_iOS_Example" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="tab-bar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
