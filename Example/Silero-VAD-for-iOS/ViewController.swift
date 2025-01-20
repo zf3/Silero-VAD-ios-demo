@@ -128,6 +128,9 @@ class ViewController: UIViewController, VADContainer {
         guard let buffer = loadAudioFile(url: Bundle.main.url(forResource: "output29", withExtension: "wav")) else {
             return
         }
+        guard let vad = self.vad else {
+            return
+        }
         
         guard let result = vad.detectForTimeStemp(buffer: buffer) else {
             return
